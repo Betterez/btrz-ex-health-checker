@@ -5,12 +5,12 @@ Healtch checker gets the information for the desired services passed as Checkers
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `btrz_healthex` to your list of dependencies in `mix.exs`:
+by adding `btrz_ex_health_checker` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:btrz_healthex, "~> 0.1.0"}
+    {:btrz_ex_health_checker, "~> 0.1.0"}
   ]
 end
 ```
