@@ -27,8 +27,6 @@ defmodule BtrzHealthchecker.Mixfile do
       {:httpoison, "~> 1.0"},
       {:mox, "~> 0.3", only: :test},
       {:postgrex, "~> 0.13.4"}
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
     ]
   end
 end
