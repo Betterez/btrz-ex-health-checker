@@ -1,15 +1,22 @@
 defmodule BtrzHealthchecker.Mixfile do
   use Mix.Project
 
+  @github_url "https://github.com/Betterez/btrz_ex_health_checker"
+  @version "0.1.1"
+
   def project do
     [
       app: :btrz_healthchecker,
-      version: "0.1.0",
+      version: @version,
       name: "BtrzHealthchecker",
       description: "Elixir health checker for checking the status of your services",
+      source_url: @github_url,
+      homepage_url: @github_url,
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
-      deps: deps()
+      deps: deps(),
+      docs: docs(),
+      package: package()
     ]
   end
 
@@ -29,5 +36,23 @@ defmodule BtrzHealthchecker.Mixfile do
       {:junit_formatter, "~> 2.1", only: :test},
       {:postgrex, "~> 0.13.4"}
     ]
+  end
+
+  defp docs do
+    [
+      main: "Mox",
+      source_ref: "v#{@version}",
+      source_url: @github_url
+    ]
+  end
+
+  defp package do
+    %{
+      name: "btrz_ex_health_checker",
+      organization: "Betterez",
+      licenses: ["MIT"],
+      maintainers: ["Hernán García", "Pablo Brudnick"],
+      links: %{"GitHub" => @github_url}
+    }
   end
 end
