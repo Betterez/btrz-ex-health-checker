@@ -40,7 +40,7 @@ defmodule BtrzHealthchecker.Mixfile do
 
   defp docs do
     [
-      main: "Mox",
+      main: "BtrzHealthchecker",
       source_ref: "v#{@version}",
       source_url: @github_url
     ]
