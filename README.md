@@ -1,6 +1,6 @@
 # BtrzHealthchecker
 
-Healtch checker gets the information for the desired services passed as Checkers.
+Health checker gets the information for the desired services passed as Checkers in addition to environment information.
 
 ## Installation
 
