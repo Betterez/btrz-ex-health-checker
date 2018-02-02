@@ -26,6 +26,7 @@ defmodule BtrzHealthchecker.Mixfile do
       {:ex_doc, "~> 0.16", only: :dev, runtime: false},
       {:httpoison, "~> 1.0"},
       {:mox, "~> 0.3", only: :test},
+      {:junit_formatter, "~> 2.1", only: :test},
       {:postgrex, "~> 0.13.4"}
     ]
   end

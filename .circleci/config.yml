@@ -13,3 +13,5 @@ jobs:
       - run: mix deps.get
       - run: mix compile
       - run: mix test
+      - store_test_results:
+        path: /tmp/btrz-ex-health-checker-test-results
