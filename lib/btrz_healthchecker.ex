@@ -8,7 +8,6 @@ defmodule BtrzHealthchecker do
   use Mix.Task
 
   alias BtrzHealthchecker.{Info, EnvironmentInfo}
-  alias BtrzHealthchecker.Checkers.{Postgres}
 
   @environment_info_api Application.get_env(:btrz_healthchecker, :environment_info_api) || EnvironmentInfo
 
@@ -35,7 +34,7 @@ defmodule BtrzHealthchecker do
   @spec info() :: %Info{}
   def info() do
     %Info{} =
-      set_environment_info
+      set_environment_info()
       |> Map.put(:status, 200)
   end
 
@@ -51,16 +50,16 @@ defmodule BtrzHealthchecker do
       |> Enum.map(&Task.await/1)
 
     %Info{} =
-      set_environment_info
+      set_environment_info()
       |> Map.put(:status, 200)
       |> Map.put(:services, services_status)
   end
 
   defp set_environment_info do
     %Info{
-      commit: @environment_info_api.git_revision_hash,
-      instanceId: @environment_info_api.ec2_instance_id,
-      build: @environment_info_api.build_number
+      commit: @environment_info_api.git_revision_hash(),
+      instanceId: @environment_info_api.ec2_instance_id(),
+      build: @environment_info_api.build_number()
     }
   end
 end

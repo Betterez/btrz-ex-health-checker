@@ -38,7 +38,7 @@ defmodule BtrzHealthchecker.Checkers.Postgres do
           {:ok, _} -> 200
           {:error, _reason} -> 500
         end
-      {:error, err} -> 500
+      {:error, _reason} -> 500
     end
   end
 end
