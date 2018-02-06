@@ -49,7 +49,6 @@ defmodule BtrzHealthchecker.Mixfile do
   defp package do
     %{
       name: "btrz_ex_health_checker",
-      organization: "Betterez",
       licenses: ["MIT"],
       maintainers: ["Hernán García", "Pablo Brudnick"],
       links: %{"GitHub" => @github_url}
