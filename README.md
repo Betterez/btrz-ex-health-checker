@@ -29,7 +29,7 @@ end
 ## Postgres checker
 You can use the pre-defined BtrzHealthchecker.Checkers.Postgres
 ## Create your custom checkers
-You can create and pass your own checkers using the Checker behavour, imeplementing `check_status/1` and `name/0`.
+You can create and pass your own checkers using the Checker behavour, implementing `check_status/1` and `name/0`.
 
 ```elixir
 defmodule MyApp.CustomChecker do
