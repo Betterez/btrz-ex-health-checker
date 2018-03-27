@@ -18,7 +18,7 @@ end
 ```
 ## Usage
 
-```
+```elixir
   my_connection_opts = %{hostname: "localhost", username: "postgres", password: "mypass", database: "mydb"}
 
   BtrzHealthchecker.info([%{checker_module: BtrzHealthchecker.Checkers.Postgres, opts: my_connection_opts}])
@@ -31,7 +31,7 @@ You can use the pre-defined BtrzHealthchecker.Checkers.Postgres
 ## Create your custom checkers
 You can create and pass your own checkers using the Checker behavour, imeplementing `check_status/1` and `name/0`.
 
-```
+```elixir
 defmodule MyApp.CustomChecker do
   @behaviour BtrzHealthchecker.Checker
 
