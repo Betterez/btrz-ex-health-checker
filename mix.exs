@@ -2,11 +2,11 @@ defmodule BtrzHealthchecker.Mixfile do
   use Mix.Project
 
   @github_url "https://github.com/Betterez/btrz_ex_health_checker"
-  @version "0.1.1"
+  @version "0.2.0"
 
   def project do
     [
-      app: :btrz_healthchecker,
+      app: :btrz_ex_health_checker,
       version: @version,
       name: "BtrzHealthchecker",
       description: "Elixir health checker for checking the status of your services",

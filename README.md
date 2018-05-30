@@ -12,7 +12,7 @@ by adding `btrz_ex_health_checker` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:btrz_ex_health_checker, "~> 0.1.1", app: false}
+    {:btrz_ex_health_checker, "~> 0.2.0"}
   ]
 end
 ```

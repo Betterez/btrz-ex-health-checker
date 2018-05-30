@@ -9,7 +9,7 @@ defmodule BtrzHealthchecker do
 
   alias BtrzHealthchecker.{Info, EnvironmentInfo}
 
-  @environment_info_api Application.get_env(:btrz_healthchecker, :environment_info_api) || EnvironmentInfo
+  @environment_info_api Application.get_env(:btrz_ex_health_checker, :environment_info_api) || EnvironmentInfo
 
   @typedoc """
   A checker that implements the Checker behaviour
@@ -22,12 +22,12 @@ defmodule BtrzHealthchecker do
   ## Examples
       iex> my_connection_opts = %{hostname: "localhost", username: "postgres", password: "mypass", database: "mydb"}
       iex> BtrzHealthchecker.info([%{checker_module: BtrzHealthchecker.Checkers.Postgres, opts: my_connection_opts}])
-      %BtrzHealthchecker.Info{build: "d3b3f9133f68b8877347e06b3d7285dd1d5d3921", commit: "3d7285dd1d5d3921d3b3f9133f68b8877347e06b", 
+      %BtrzHealthchecker.Info{build: "d3b3f9133f68b8877347e06b3d7285dd1d5d3921", commit: "3d7285dd1d5d3921d3b3f9133f68b8877347e06b",
             instanceId: "i-b3f9133f68b88", services: [%{name: "postgres", status: 200}], status: 200}
 
       Or without any service
       iex> BtrzHealthchecker.info()
-      %BtrzHealthchecker.Info{build: "d3b3f9133f68b8877347e06b3d7285dd1d5d3921", commit: "3d7285dd1d5d3921d3b3f9133f68b8877347e06b", 
+      %BtrzHealthchecker.Info{build: "d3b3f9133f68b8877347e06b3d7285dd1d5d3921", commit: "3d7285dd1d5d3921d3b3f9133f68b8877347e06b",
             instanceId: "i-b3f9133f68b88", services: [], status: 200}
 
   """
@@ -40,9 +40,9 @@ defmodule BtrzHealthchecker do
 
   @spec info([checker]) :: %Info{}
   def info(checkers) when is_list(checkers) do
-    services_status = 
-      checkers 
-      |> Enum.map(fn (checker_item) -> 
+    services_status =
+      checkers
+      |> Enum.map(fn (checker_item) ->
         Task.async(fn ->
           %{name: checker_item.checker_module.name, status: checker_item.checker_module.check_status(checker_item.opts)}
         end)
