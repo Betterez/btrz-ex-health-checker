@@ -4,6 +4,9 @@
 
 Health checker gets the information for the desired services passed as Checkers in addition to environment information.
 
+## Documentation
+API documentation at HexDocs [https://hexdocs.pm/btrz_ex_health_checker](https://hexdocs.pm/btrz_ex_health_checker)
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
@@ -11,9 +14,7 @@ by adding `btrz_ex_health_checker` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [
-    {:btrz_ex_health_checker, "~> 0.2.0"}
-  ]
+  [{:btrz_ex_health_checker, "~> 0.2.1"}]
 end
 ```
 ## Usage
@@ -22,8 +23,9 @@ end
   my_connection_opts = %{hostname: "localhost", username: "postgres", password: "mypass", database: "mydb"}
 
   BtrzHealthchecker.info([%{checker_module: BtrzHealthchecker.Checkers.Postgres, opts: my_connection_opts}])
-    %BtrzHealthchecker.Info{build: "d3b3f9133f68b8877347e06b3d7285dd1d5d3921", commit: "3d7285dd1d5d3921d3b3f9133f68b8877347e06b", 
-      instanceId: "i-b3f9133f68b88", services: [%{name: "postgres", status: 200}], status: 200}
+  
+  %BtrzHealthchecker.Info{build: "d3b3f9133f68b8877347e06b3d7285dd1d5d3921", commit: "3d7285dd1d5d3921d3b3f9133f68b8877347e06b", 
+    instanceId: "i-b3f9133f68b88", services: [%{name: "postgres", status: 200}], status: 200}
 ```
 
 ## Postgres checker
