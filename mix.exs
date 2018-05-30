@@ -14,11 +14,15 @@ defmodule BtrzHealthchecker.Mixfile do
       homepage_url: @github_url,
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
+      elixirc_paths: elixirc_paths(Mix.env),
       deps: deps(),
       docs: docs(),
       package: package()
     ]
   end
+
+  defp elixirc_paths(:test), do: ["test/support", "lib"]
+  defp elixirc_paths(_),     do: ["lib"]
 
   # Run "mix help compile.app" to learn about applications.
   def application do

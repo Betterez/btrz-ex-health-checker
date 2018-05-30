@@ -4,9 +4,6 @@ defmodule BtrzHealthchecker do
 
   Used to get the information about the desired services passed as Checkers.
   """
-
-  use Mix.Task
-
   alias BtrzHealthchecker.{Info, EnvironmentInfo}
 
   @environment_info_api Application.get_env(:btrz_ex_health_checker, :environment_info_api) || EnvironmentInfo
