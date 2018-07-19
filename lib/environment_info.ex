@@ -1,7 +1,5 @@
 defmodule BtrzHealthchecker.EnvironmentInfoApi do
-  @moduledoc """
-  Defines the behaviour of EnvironmentInfo
-  """
+  @moduledoc false
 
   @callback build_number() :: String.t
   @callback git_revision_hash() :: String.t

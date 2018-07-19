@@ -4,6 +4,7 @@ defmodule BtrzHealthchecker.Checkers.Postgres do
   """
 
   @behaviour BtrzHealthchecker.Checker
+  @postgrex Application.get_env(:btrz_ex_health_checker, :postgrex_api) || Postgrex
 
   @doc """
   Returns the name of the service
@@ -15,8 +16,8 @@ defmodule BtrzHealthchecker.Checkers.Postgres do
   @doc """
   Returns the status of the postgres service querying by all the tables of the catalog
 
-  Returns 200.
-  Returns 500.
+  Returns 200 if the conection is reachable and the check query can be executed.
+  Returns 500 in case of `Postgrex.Error` or other like `ArgumentError`, `DBConnection.ConnectionError`, `DBConnection.OwnershipError` or `RuntimeError`.
 
   ## Examples
 
@@ -27,18 +28,22 @@ defmodule BtrzHealthchecker.Checkers.Postgres do
 
   """
   def check_status(opts) do
-    case Postgrex.start_link(
-      hostname: opts[:hostname], 
-      username: opts[:username], 
-      password: opts[:password], 
+    case @postgrex.start_link(
+      hostname: opts[:hostname],
+      username: opts[:username],
+      password: opts[:password],
       database: opts[:database]) do
-      
+
       {:ok, pid} ->
-        case Postgrex.query(pid, "SELECT * FROM pg_catalog.pg_tables", []) do
-          {:ok, _} -> 200
-          {:error, _reason} -> 500
+        try do
+          {:ok, _} = @postgrex.query!(pid, "SELECT * FROM pg_catalog.pg_tables", [], [])
+          200
+        rescue
+          _error -> 500
         end
-      {:error, _reason} -> 500
+
+      {:error, _reason} ->
+        500
     end
   end
 end

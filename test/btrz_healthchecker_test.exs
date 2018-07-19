@@ -1,16 +1,14 @@
 defmodule BtrzHealthcheckerTest do
-  use ExUnit.Case, async: true
-  #doctest BtrzHealthchecker
+  use ExUnit.Case
 
   import Mox
 
-  setup :verify_on_exit!
-  setup :set_mox_global
+  setup :set_mox_from_context
 
   setup do
     %{build_number: "d3b3f9133f68b8877347e06b3d7285dd1d5d3921", git_hash: "3d7285dd1d5d3921d3b3f9133f68b8877347e06b", instance_id: "i-b3f9133f68b88"}
   end
-  
+
   test "returns the Info struct with environment info and no checkers if not passed", env_data do
     BtrzHealthchecker.EnvironmentInfoMock
     |> stub(:build_number, fn -> env_data[:build_number] end)
