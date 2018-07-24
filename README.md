@@ -14,7 +14,7 @@ by adding `btrz_ex_health_checker` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:btrz_ex_health_checker, "~> 0.2.1"}]
+  [{:btrz_ex_health_checker, "~> 0.2.2"}]
 end
 ```
 ## Usage
@@ -45,8 +45,3 @@ defmodule MyApp.CustomChecker do
   end
 end
 ```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/btrz_ex_health_checker](https://hexdocs.pm/btrz_ex_health_checker).
-
