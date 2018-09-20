@@ -36,7 +36,7 @@ defmodule BtrzHealthchecker.Checkers.Postgres do
 
       {:ok, pid} ->
         try do
-          {:ok, _} = @postgrex.query!(pid, "SELECT * FROM pg_catalog.pg_tables", [], [])
+          @postgrex.query!(pid, "SELECT * FROM pg_catalog.pg_tables", [], [])
           200
         rescue
           _error -> 500

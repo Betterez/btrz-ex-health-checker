@@ -2,7 +2,7 @@ defmodule BtrzHealthchecker.Mixfile do
   use Mix.Project
 
   @github_url "https://github.com/Betterez/btrz_ex_health_checker"
-  @version "0.2.2"
+  @version "0.2.3"
 
   def project do
     [
@@ -38,7 +38,7 @@ defmodule BtrzHealthchecker.Mixfile do
       {:httpoison, "~> 1.0"},
       {:mox, "~> 0.3", only: :test},
       {:junit_formatter, "~> 2.1", only: :test},
-      {:postgrex, "~> 0.13.4"}
+      {:postgrex, "~> 0.13.5"}
     ]
   end
 
