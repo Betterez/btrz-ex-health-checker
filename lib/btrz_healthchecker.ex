@@ -6,7 +6,8 @@ defmodule BtrzHealthchecker do
   """
   alias BtrzHealthchecker.{Info, EnvironmentInfo}
 
-  @environment_info_api Application.get_env(:btrz_ex_health_checker, :environment_info_api) || EnvironmentInfo
+  @environment_info_api Application.get_env(:btrz_ex_health_checker, :environment_info_api) ||
+                          EnvironmentInfo
 
   @typedoc """
   A checker that implements the Checker behaviour
@@ -39,9 +40,12 @@ defmodule BtrzHealthchecker do
   def info(checkers) when is_list(checkers) do
     services_status =
       checkers
-      |> Enum.map(fn (checker_item) ->
+      |> Enum.map(fn checker_item ->
         Task.async(fn ->
-          %{name: checker_item.checker_module.name, status: checker_item.checker_module.check_status(checker_item.opts)}
+          %{
+            name: checker_item.checker_module.name,
+            status: checker_item.checker_module.check_status(checker_item.opts)
+          }
         end)
       end)
       |> Enum.map(&Task.await/1)

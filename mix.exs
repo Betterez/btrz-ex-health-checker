@@ -12,9 +12,9 @@ defmodule BtrzHealthchecker.Mixfile do
       description: "Elixir health checker for checking the status of your services",
       source_url: @github_url,
       homepage_url: @github_url,
-      elixir: "~> 1.5",
-      start_permanent: Mix.env == :prod,
-      elixirc_paths: elixirc_paths(Mix.env),
+      elixir: "~> 1.6",
+      start_permanent: Mix.env() == :prod,
+      elixirc_paths: elixirc_paths(Mix.env()),
       deps: deps(),
       docs: docs(),
       package: package()
@@ -22,7 +22,7 @@ defmodule BtrzHealthchecker.Mixfile do
   end
 
   defp elixirc_paths(:test), do: ["test/support", "lib"]
-  defp elixirc_paths(_),     do: ["lib"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Run "mix help compile.app" to learn about applications.
   def application do

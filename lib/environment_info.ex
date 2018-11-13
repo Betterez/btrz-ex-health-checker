@@ -1,9 +1,9 @@
 defmodule BtrzHealthchecker.EnvironmentInfoApi do
   @moduledoc false
 
-  @callback build_number() :: String.t
-  @callback git_revision_hash() :: String.t
-  @callback ec2_instance_id() :: String.t
+  @callback build_number() :: String.t()
+  @callback git_revision_hash() :: String.t()
+  @callback ec2_instance_id() :: String.t()
 end
 
 defmodule BtrzHealthchecker.EnvironmentInfo do
@@ -30,8 +30,10 @@ defmodule BtrzHealthchecker.EnvironmentInfo do
     case HTTPoison.get("http://169.254.169.254/latest/meta-data/instance-id") do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         body
+
       {:ok, %HTTPoison.Response{status_code: 404}} ->
         ""
+
       {:error, %HTTPoison.Error{reason: _reason}} ->
         "localhost"
     end
