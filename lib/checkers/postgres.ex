@@ -4,7 +4,7 @@ defmodule BtrzHealthchecker.Checkers.Postgres do
   """
 
   @behaviour BtrzHealthchecker.Checker
-  @postgrex Application.get_env(:btrz_ex_health_checker, :postgrex_api) || Postgrex
+  @postgres Application.get_env(:btrz_ex_health_checker, :postgres_api) || Postgrex
 
   @doc """
   Returns the name of the service
@@ -30,14 +30,14 @@ defmodule BtrzHealthchecker.Checkers.Postgres do
   def check_status(opts) do
     try do
       {:ok, pid} =
-        @postgrex.start_link(
+        @postgres.start_link(
           hostname: opts[:hostname],
           username: opts[:username],
           password: opts[:password],
           database: opts[:database]
         )
 
-      @postgrex.query!(pid, "SELECT * FROM pg_catalog.pg_tables", [], [])
+      @postgres.query!(pid, "SELECT * FROM pg_catalog.pg_tables", [], [])
       200
     rescue
       _error -> 500
