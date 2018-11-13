@@ -2,3 +2,4 @@ Mox.defmock(BtrzHealthchecker.EnvironmentInfoMock, for: BtrzHealthchecker.Enviro
 Mox.defmock(BtrzHealthchecker.MyServiceMock, for: BtrzHealthchecker.Checker)
 Mox.defmock(BtrzHealthchecker.MyDatabaseServiceMock, for: BtrzHealthchecker.Checker)
 Mox.defmock(BtrzHealthchecker.PostgresMock, for: BtrzHealthchecker.Support.PostgrexApi)
+Mox.defmock(BtrzHealthchecker.RedisMock, for: BtrzHealthchecker.Support.RedisApi)

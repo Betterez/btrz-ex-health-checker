@@ -28,22 +28,16 @@ defmodule BtrzHealthchecker.Checkers.Postgres do
 
   """
   def check_status(opts) do
-    case @postgrex.start_link(
-      hostname: opts[:hostname],
-      username: opts[:username],
-      password: opts[:password],
-      database: opts[:database]) do
-
-      {:ok, pid} ->
-        try do
-          @postgrex.query!(pid, "SELECT * FROM pg_catalog.pg_tables", [], [])
-          200
-        rescue
-          _error -> 500
-        end
-
-      {:error, _reason} ->
-        500
+    try do
+      {:ok, pid} = @postgrex.start_link(
+        hostname: opts[:hostname],
+        username: opts[:username],
+        password: opts[:password],
+        database: opts[:database])
+      @postgrex.query!(pid, "SELECT * FROM pg_catalog.pg_tables", [], [])
+      200
+    rescue
+      _error -> 500
     end
   end
 end

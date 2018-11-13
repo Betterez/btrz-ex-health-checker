@@ -7,7 +7,7 @@ defmodule BtrzHealthchecker.Checkers.PostgresTest do
 
   test "returns 200 if postgres server responds ok" do
     BtrzHealthchecker.PostgresMock
-    |> stub(:start_link, fn(opts) -> {:ok, self()} end)
+    |> stub(:start_link, fn _opts -> {:ok, self()} end)
     |> stub(:query!, fn(_, _ , _, _) -> %Postgrex.Result{} end)
 
     opts = [
@@ -22,7 +22,7 @@ defmodule BtrzHealthchecker.Checkers.PostgresTest do
 
   test "returns 500 if Postgrex.start_link/1 returns error" do
     BtrzHealthchecker.PostgresMock
-    |> stub(:start_link, fn(opts) -> {:error, %{}} end)
+    |> stub(:start_link, fn _opts -> {:error, %{}} end)
 
     opts = [
       hostname: "test",
@@ -36,7 +36,7 @@ defmodule BtrzHealthchecker.Checkers.PostgresTest do
 
   test "returns 500 if Postgrex.query!/4 raises" do
     BtrzHealthchecker.PostgresMock
-    |> stub(:start_link, fn(opts) -> {:ok, self()} end)
+    |> stub(:start_link, fn _opts -> {:ok, self()} end)
     |> stub(:query!, fn(_, _ , _, _) -> raise RuntimeError end)
 
     opts = [
