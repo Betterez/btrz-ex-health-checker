@@ -1,8 +1,8 @@
 defmodule BtrzHealthchecker.Mixfile do
   use Mix.Project
 
-  @github_url "https://github.com/Betterez/btrz_ex_health_checker"
-  @version "0.3.1"
+  @github_url "https://github.com/Betterez/btrz-ex-health-checker"
+  @version "0.3.2"
 
   def project do
     [
