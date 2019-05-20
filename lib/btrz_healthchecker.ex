@@ -12,13 +12,13 @@ defmodule BtrzHealthchecker do
   @typedoc """
   A checker that implements the Checker behaviour
   """
-  @type checker :: BtrzHealthchecker.Checker
+  @type checker :: Map.t()
 
   @doc """
   Returns the Info struct with the status of the desired services.
 
   ## Examples
-      iex> my_connection_opts = %{hostname: "localhost", username: "postgres", password: "mypass", database: "mydb"}
+      iex> my_connection_opts = [hostname: "localhost", username: "postgres", password: "mypass", database: "mydb"]
       iex> BtrzHealthchecker.info([%{checker_module: BtrzHealthchecker.Checkers.Postgres, opts: my_connection_opts}])
       %BtrzHealthchecker.Info{build: "d3b3f9133f68b8877347e06b3d7285dd1d5d3921", commit: "3d7285dd1d5d3921d3b3f9133f68b8877347e06b",
             instanceId: "i-b3f9133f68b88", services: [%{name: "postgres", status: 200}], status: 200}
@@ -56,7 +56,7 @@ defmodule BtrzHealthchecker do
       |> Map.put(:services, services_status)
   end
 
-  defp set_environment_info do
+  defp set_environment_info() do
     %Info{
       commit: @environment_info_api.git_revision_hash(),
       instanceId: @environment_info_api.ec2_instance_id(),
