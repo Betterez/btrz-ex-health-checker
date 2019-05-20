@@ -1,7 +1,5 @@
 # BtrzHealthchecker
 
-[![Build status badge](https://img.shields.io/circleci/project/github/Betterez/btrz_ex_health_checker/master.svg)](https://circleci.com/gh/Betterez/btrz_ex_health_checker/tree/master)
-
 Health checker gets the information for the desired services passed as Checkers in addition to environment information.
 
 ## Documentation
