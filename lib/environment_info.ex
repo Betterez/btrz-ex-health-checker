@@ -27,10 +27,18 @@ defmodule BtrzHealthchecker.EnvironmentInfo do
   end
 
   def ec2_instance_id do
-    case HTTPoison.get("http://169.254.169.254/latest/meta-data/instance-id") do
-      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        body
+    token_url = "http://169.254.169.254/latest/api/token"
+    instance_id_url = "http://169.254.169.254/latest/meta-data/instance-id"
+    token_headers = [{"X-aws-ec2-metadata-token-ttl-seconds", "21600"}]
+    opts = [hackney: [pool: false]]
 
+    with {:ok, %HTTPoison.Response{status_code: 200, body: token}} <-
+           HTTPoison.put(token_url, "", token_headers, opts),
+         instance_id_headers = [{"X-aws-ec2-metadata-token", token}],
+         {:ok, %HTTPoison.Response{status_code: 200, body: body}} <-
+           HTTPoison.get(instance_id_url, instance_id_headers, opts) do
+      body
+    else
       {:ok, %HTTPoison.Response{status_code: 404}} ->
         ""
 
