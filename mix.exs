@@ -34,7 +34,7 @@ defmodule BtrzHealthchecker.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ex_doc, "~> 0.16", only: :dev, runtime: false},
+      {:ex_doc, "~> 0.29", only: :dev, runtime: false},
       {:httpoison, "~> 1.0"},
       {:mox, "~> 0.3", only: :test},
       {:junit_formatter, "~> 2.1", only: :test},
